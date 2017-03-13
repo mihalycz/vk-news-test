@@ -1,0 +1,27 @@
+@import '~bootstrap/less/bootstrap';
+
+@footer-padding: 10px;
+@footer-inner-height: 30px;
+@footer-height: @footer-inner-height + @footer-padding * 2;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: @footer-height;
+}
+
+header {
+  .page-header;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: @footer-height;
+  padding: @footer-padding 0;
+  background-color: @brand-primary;
+}
