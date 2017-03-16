@@ -1,10 +1,10 @@
 <vk-auth></vk-auth>
 <div class="results-container">
-    <div class="results-header" ng-if="searchValue">
+    <div class="results-header" ng-if="!isLoading && searchValue">
         <span class="button-back" aria-hidden="true" ng-click="onBackClick()"></span>
         <h3>результат по запросу: <span>{{searchValue}}</span></h3>
     </div>
-    <div ng-repeat="item in items" class="result-item" ng-click="$parent.onItemClick(item.id, item.ownerId)">
+    <div ng-if="!isLoading && items.length" ng-repeat="item in items" class="result-item" ng-click="$parent.onItemClick(item.id, item.ownerId)">
         <div class="published-by">
             {{item.publishedBy}}
         </div>
@@ -19,8 +19,10 @@
             <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Нравится {{item.likesCount}}
         </div>
     </div>
-
     <div lazyload class="lazy-loader">
+        <div class="ajax-loader"></div>
+    </div>
+    <div class="loading" ng-if="isLoading">
         <div class="ajax-loader"></div>
     </div>
 </div>

@@ -7,6 +7,7 @@ Result page controller
 export default class ResultController extends BaseController{
     constructor(...parentDependencies) {
         super(...parentDependencies);
+        this.scope.isLoading = true;
         this.scope.searchValue = '';
         this.scope.items = [];
         this.scope.onItemClick = this.onItemClick.bind(this);
@@ -23,9 +24,7 @@ export default class ResultController extends BaseController{
      */
     onItemClick(id, ownerId) {
         if (id && ownerId) {
-            this.queryString.encodeQuery(id, ownerId).then((encoded) => {
-                window.location = `/news.html?q=${encoded}`;
-            });
+            window.location = `/news.html?q=${this.queryString.encodeQuery(id, ownerId)}`;
         }
     }
 
@@ -46,6 +45,7 @@ export default class ResultController extends BaseController{
     onGetNewsSuccess (response) {
         this.nextFrom = _.get(response, 'nextFrom');
         this.scope.items = _.concat(this.scope.items, _.get(response, 'items'));
+        this.scope.isLoading = false;
         this.scope.$broadcast('lazyLoadingFinished');
         if(!this.nextFrom) {
             this.scope.$broadcast('allLoaded');

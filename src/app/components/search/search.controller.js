@@ -22,9 +22,7 @@ export default class SearchController extends BaseController{
                 if (!isOk) {
                     console.log('tracking has failed');
                 }
-                this.queryString.encodeQuery(query).then((encoded) => {
-                    window.location = `/results.html?q=${encoded}`;
-                });
+                window.location = `/results.html?q=${this.queryString.encodeQuery(query)}`;
             });
         }
     }

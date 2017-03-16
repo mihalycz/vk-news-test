@@ -2,6 +2,8 @@
 npm i
 ```
 
+Before the application build you have to set your vk.com app id in scr/config.js file.
+
 **dev:**
 
 ```sh

@@ -1,6 +1,4 @@
 import _ from 'lodash';
-import base64 from 'js-base64';
-import queryParser from 'query-string';
 
 /**
  * Query String Service
@@ -15,10 +13,7 @@ export default class QueryStringService {
     @param {Array} query query parameters
      */
     encodeQuery (...query) {
-        let deferred = this.q.defer();
-        let encoded = base64.Base64.encode(`${window.location.pathname}${window.location.search}|${query}`);
-        deferred.resolve(encoded);
-        return deferred.promise;
+        return encodeURIComponent(`${window.location.pathname}${window.location.search}|${query}`);
     }
 
     /*
@@ -26,12 +21,11 @@ export default class QueryStringService {
      */
     decodeQuery () {
         let deferred = this.q.defer();
-        let search = queryParser.parse(location.search);
-        let decoded = base64.Base64.decode(_.get(search, 'q'));
-        let params = _.split(decoded, '|');
+        let params =_.split(decodeURIComponent(location.search.replace('?q=', '')), '|');
+        let query = params.pop();
         deferred.resolve({
-            prevPage: _.get(params, '[0]'),
-            query: _.get(params, '[1]')
+            prevPage: _.join(params, ''),
+            query: query
         });
 
         return deferred.promise;
