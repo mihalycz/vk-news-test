@@ -1,5 +1,5 @@
 export default {
-    appId: 5923081,
+    appId: 0,
     initialNewsPageCount: 30,
     newsPageCount: 10,
     apiVersion: '5.62',
