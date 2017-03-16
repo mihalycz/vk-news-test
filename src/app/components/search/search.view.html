@@ -1,0 +1,14 @@
+<vk-auth></vk-auth>
+<form class="news-search-form">
+    <div class="form-group" ng-hide="isSearching">
+        <input ng-model="searchValue"
+               type="text"
+               maxlength="128"
+               class="form-control"
+               placeholder="введите поисковый запрос...">
+    </div>
+    <div class="form-group loader-form-group" ng-show="isSearching">
+        <div ng-show="isSearching" class="ajax-loader"></div>
+    </div>
+    <button type="submit" ng-click="onSearchClick()" ng-hide="isSearching" class="btn btn-default">найти</button>
+</form>

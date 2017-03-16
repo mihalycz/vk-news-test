@@ -1,0 +1,28 @@
+<vk-auth></vk-auth>
+<div class="results-container">
+    <div class="results-header" ng-if="searchValue">
+        <span class="button-back" aria-hidden="true" ng-click="onBackClick()"></span>
+        <h3>результат по запросу: <span>{{searchValue}}</span></h3>
+    </div>
+    <div ng-repeat="item in items" class="result-item" ng-click="$parent.onItemClick(item.id, item.ownerId)">
+        <div class="published-by">
+            {{item.publishedBy}}
+        </div>
+        <div class="publish-date">
+            {{item.getItemDate ('DD.MM.YY')}}
+        </div>
+        <div class="post-text">
+            <span ng-if="item.text !== 'mmedia'">{{item.getShortItemText()}}</span>
+            <span ng-if="item.text === 'mmedia'" class="multimedia-icon" aria-hidden="true"></span>
+        </div>
+        <div class="likes">
+            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Нравится {{item.likesCount}}
+        </div>
+    </div>
+
+    <div lazyload class="lazy-loader">
+        <div class="ajax-loader"></div>
+    </div>
+</div>
+
+

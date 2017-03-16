@@ -1,0 +1,29 @@
+<vk-auth></vk-auth>
+<div class="news-container">
+    <div class="news-header" ng-if="item">
+        <span class="button-back" aria-hidden="true" ng-click="onBackClick()"></span>
+        <h3>новость от <span>{{item.publishedBy}}</span></h3>
+    </div>
+    <div class="news-item" ng-if="item">
+        <div class="publish-date">
+            {{item.getItemDate ('DD.MM.YY')}}
+        </div>
+        <div class="post-text">
+            <span ng-if="item.text !== 'mmedia'">{{item.text}}</span>
+            <span ng-if="item.text === 'mmedia'" class="multimedia-icon" aria-hidden="true"></span>
+            <div class="gallery" ng-if="item.photos.length">
+                <div uib-carousel active="active">
+                    <div uib-slide ng-repeat="photo in item.photos" index="$index">
+                        <img ng-src="{{photo.smallUrl}}" image-popup="{{photo.url || photo.smallUrl}}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="likes">
+            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Нравится {{item.likesCount}}
+        </div>
+    </div>
+    <div class="loading" ng-if="isLoading">
+        <div class="ajax-loader"></div>
+    </div>
+</div>

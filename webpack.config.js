@@ -14,6 +14,7 @@ const mainConfig = {
     },
     module: {
         loaders: [
+            { test: /\.cssl$/, loader: 'css-loader'},
             { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
             { test: /\.html$/, loader: 'html-loader'},
         ]
@@ -24,7 +25,8 @@ const mainConfig = {
         library: [libraryName, "[name]"],
     },
     plugins: [
-        new CopyWebpackPlugin([{ from: './src/modules-helper.js', to: 'js/modules-helper.js' }])
+        new CopyWebpackPlugin([{ from: './src/modules-helper.js', to: 'js/modules-helper.js' }]),
+        new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" })
     ],
     resolve: {
         extensions: ['.webpack.js', '.web.js', '.tsx', '.ts', '.js', '.json']
