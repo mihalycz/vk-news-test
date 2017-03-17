@@ -6,13 +6,8 @@
   .make-md-column-offset(1);
   margin-bottom: @footer-height;
 
-  .news-header {
-    h3 {
-      display: inline-block;
-      span {
-        opacity: 0.9;
-      }
-    }
+  .container-header {
+    .container-header;
   }
 
   .news-item {
@@ -40,7 +35,6 @@
     }
     .gallery {
       margin: 10px auto;
-      width: 35%;
       .carousel-control {
         background: none;
         color: @background-color-3;
@@ -58,5 +52,37 @@
   .loading {
     text-align: center;
     padding: 10px 0;
+  }
+}
+
+@media (min-width: 1700px) {
+  .news-item {
+    .gallery {
+      width: 40%;
+    }
+  }
+}
+
+@media (max-width: 1699px) and (min-width: 1200px) {
+  .news-item {
+    .gallery {
+      width: 50%;
+    }
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 700px) {
+  .news-item {
+    .gallery {
+      width: 70%;
+    }
+  }
+}
+
+@media (max-width: 699px) {
+  .news-item {
+    .gallery {
+      width: 100%;
+    }
   }
 }
