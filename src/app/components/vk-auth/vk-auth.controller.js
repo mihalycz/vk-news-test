@@ -11,8 +11,14 @@ export default class VkAuthController extends BaseController {
     onCheckLoginStatus (isLogin) {
         this.scope.isNotLogin = !isLogin;
         if (this.scope.isNotLogin && !this.widgetInitialized) {
-            this.vkApi.initAuthWidget ('vk_auth').then(this.onCheckLoginStatus.bind(this));
+            this.vkApi.initAuthWidget ('vk_auth').then(this.onAuthorizationComplete.bind(this));
             this.widgetInitialized = true;
+        }
+    }
+
+    onAuthorizationComplete (isLogin) {
+        if (isLogin) {
+            window.location.reload(true);
         }
     }
 }
